@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <img id="image1" src="./pss-img.png">
+        <img id="image2" src="./pss-img.png">
+        <img id="image3" src="./pss-img.png">
+        <img id="image4" src="./pss-img.png">
+        <h1>Password Generator</h1>
+        <div class="input-section">
+            <h2>Enter Password Length: </h2>
+            <input type="number" id="length" value="12" min="4" max="32">
+        </div>
+        <div class="checkboxes">
+            <div class="checkbox" title="ABCDEFGHIJKLMNOPQRSTUVWXYZ">
+                <input type="checkbox" id="uppercase" checked>
+                <label for="uppercase">Uppercase</label>
+            </div>
+            <div class="checkbox" title="abcdefghijklmnopqrstuvwxyz">
+                <input type="checkbox" id="lowercase" checked>
+                <label for="lowercase">Lowercase</label>
+            </div>
+        </div> 
+        <div class="button-container">
+        </div>
+        <button id="generate">Generate</button>
+        <div class="checkboxes">
+            <div class="checkbox" title="0123456789">
+                <input type="checkbox" id="numbers" checked>
+                <label for="numbers">Numbers</label>
+            </div>
+            <div class="checkbox" title="!@#$%^&*()_+[]{}|;:,.<>?~">
+                <input type="checkbox" id="symbols" checked>
+                <label for="symbols">Symbols</label>
+            </div>
+        </div>
+        <div class="password" >
+            <div id="password">UwU, does the best password ever exist?</div>
+            <div class="copy-button" id="clickToCopy">Copy to Clipboard</div>
+        </div>
+    </div>
+<script src="./main.js"></script>
+</body>
+                                                                
+</html>
