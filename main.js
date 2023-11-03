@@ -12,11 +12,6 @@
         (numbers ? '0123456789' : '') +
         (symbols ? '!@#$%^&*()_+[]{}|;:,.<>?~' : '')
     );
-    console.log(length)
-    if ((length < 4) || (length > 32)) {
-        alert('Please select numbers between (4-32)')
-        return
-    }
     let password = '';
     for (let i = 0; i < length; i++){
         const randomIndex = Math.floor(Math.random() * charset.length);
@@ -24,22 +19,37 @@
     }
     return password;
  };
+ 
+ //live warning for input length
+ function showLengthWarning() {
+    const length = document.getElementById('length').value;
+    const lengthWarning = document.getElementById('lengthWarning');
+
+    if (length < 4 || length > 32) {
+        lengthWarning.textContent = `Password length should be between 4-32 characters.`
+    } else {
+        lengthWarning.textContent = '';
+    }
+ }
+
  //copy to clipboard function
  function copyToClipboard() {
     const passwordField = document.getElementById("password").textContent;
-    const clickToCopy = document.getElementById('clickToCopy');
-    const passwordToCopy = clickToCopy.textContent;
     const tempInput = document.createElement('input');
     tempInput.value = passwordField;
     document.body.appendChild(tempInput);
     tempInput.select();
-    document.execCommand('copy')
+    document.execCommand('copy');
     document.body.removeChild(tempInput); 
-    clickToCopy.textContent = 'Copied!';
-    setTimeout(() => {
-        clickToCopy.textContent = passwordToCopy;
-    }, 800);
  };
+ function updateCopyButton() {
+    const clickToCopy = document.getElementById('clickToCopy');
+    clickToCopy.textContent = 'Copied!';
+    clickToCopy.disabled = true;
+    setTimeout(() => {
+        clickToCopy.textContent = "Copy to Clipboard";
+    }, 900);
+ }
 //password generate
  document.getElementById('generate').addEventListener('click', () => {
     const password = generatePassword();
@@ -50,8 +60,17 @@
         passwordField.classList.remove('resultAnimation');
     }, 0);
  });
+ //
+ document.getElementById('length').addEventListener('input', showLengthWarning);
+
  //copy to clipboard
- document.getElementById('clickToCopy').addEventListener('click', copyToClipboard)
+ document.getElementById('clickToCopy').addEventListener('click', () => {
+    if (!this.disabled) {
+        copyToClipboard();
+        updateCopyButton();
+    }
+ })
+
  //image checked/unchecked
  const image1 = document.getElementById('image1');
  const image2 = document.getElementById('image2');
